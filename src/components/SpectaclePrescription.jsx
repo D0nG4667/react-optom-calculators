@@ -3,11 +3,9 @@ import { Grid, TextField, Tooltip, IconButton } from '@mui/material';
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import { SpectacleContext } from '../context/SpectacleContext';
 
-
-
-
 const SpectaclePrescription = ({ eye }) => {
 
+    // Get Rx from Spectacle Context
     const {
         sphereRange,
         cylinderRange,
@@ -21,28 +19,48 @@ const SpectaclePrescription = ({ eye }) => {
         setAxis,
         bvd,
         setBvd,
-    } = useContext(SpectacleContext)
+        currentEye,
+        setCurrentEye,       
+    } = useContext(SpectacleContext);
     
+    // Handle update of Spectacle Context data as select values changes
+    const handleChange = (e, set, oldValue) => {        
+        if (set == "sphere") 
+        {                
+            let targetValue = {};
+            targetValue[eye] = e.target.value;
+            // console.log(targetValue);
+            setSphere((oldValue) => ({...oldValue, ...targetValue}));
+            setCurrentEye(eye);
+        }
+        else if (set == "cylinder") 
+        {                
+            let targetValue = {};
+            targetValue[eye] = e.target.value;
+            // console.log(targetValue);
+            setCylinder((oldValue) => ({...oldValue, ...targetValue}));
+            setCurrentEye(eye);
+        }
+        else if (set == "axis") 
+        {                
+            let targetValue = {};
+            targetValue[eye] = e.target.value;
+            // console.log(targetValue);
+            setAxis((oldValue) => ({...oldValue, ...targetValue}));
+            setCurrentEye(eye);
+        } 
+        else if (set == "bvd") 
+        {                
+            let targetValue = {};
+            targetValue[eye] = e.target.value;
+            // console.log(targetValue);
+            setBvd((oldValue) => ({...oldValue, ...targetValue}));
+            setCurrentEye(eye);
+        }        
+    }    
 
-    const handleChange = (e, set, oldValue) => {
-        if (set == "bvd") 
-            {                
-                let targetValue = {};
-                targetValue[eye] = e.target.value;
-                console.log(targetValue);
-                setBvd((oldValue) => ({...oldValue, ...targetValue}));
-            } 
-        else if (set == "sphere")
-            {
-                setBvd({OS:e.target.value});
-            }
-             
-
-
-    }
-
-    console.log(sphere.OD + 'DS ' + cylinder.OD + 'DC ' + axis.OD + ' ' + bvd.OD + 'mm');
-    console.log(sphere.OS + 'DS ' + cylinder.OS + 'DC ' + axis.OS + ' ' + bvd.OS + 'mm');
+    // console.log(sphere.OD + 'DS ' + cylinder.OD + 'DC ' + axis.OD + ' ' + bvd.OD + 'mm');
+    // console.log(sphere.OS + 'DS ' + cylinder.OS + 'DC ' + axis.OS + ' ' + bvd.OS + 'mm');
 
     return (  
         <>
@@ -53,10 +71,8 @@ const SpectaclePrescription = ({ eye }) => {
                     fullWidth
                     required                
                     // defaultValue=""
-                    value={sphere}
-                    onChange={(e) => {
-                        setSphere(e.target.value);                        
-                    }}                                
+                    value={sphere[eye]}
+                    onChange={(e) => handleChange(e, "sphere", sphere)}                                
                     SelectProps={{
                         native: true,                    
                     }}
@@ -75,10 +91,8 @@ const SpectaclePrescription = ({ eye }) => {
                     label="Cylinder (DC)"
                     fullWidth                
                     // defaultValue=""
-                    value={cylinder}
-                    onChange={(e) => {
-                        setCylinder(e.target.value);                        
-                    }}                                
+                    value={cylinder[eye]}
+                    onChange={(e) => handleChange(e, "cylinder", cylinder)}                                
                     SelectProps={{
                         native: true,                    
                     }}
@@ -97,10 +111,8 @@ const SpectaclePrescription = ({ eye }) => {
                     label="Axis"
                     fullWidth                
                     // defaultValue="" 
-                    value={axis}
-                    onChange={(e) => {
-                        setAxis(e.target.value);                        
-                    }}                                                
+                    value={axis[eye]}
+                    onChange={(e) => handleChange(e, "axis", axis)}                                                
                     SelectProps={{
                         native: true,                    
                     }}

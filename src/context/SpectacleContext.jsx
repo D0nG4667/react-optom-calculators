@@ -14,6 +14,7 @@ const SpectacleProvider = ({ children }) => {
     const [ cylinder, setCylinder ] = useState({OD: "", OS:""});
     const [ axis, setAxis ] = useState({OD: "", OS:""});
     const [ bvd, setBvd ] = useState({OD: "12", OS:"12"});
+    const [ currentEye, setCurrentEye ] = useState("");
 
     const value = {
         sphereRange,
@@ -28,6 +29,8 @@ const SpectacleProvider = ({ children }) => {
         setAxis,
         bvd,
         setBvd,
+        currentEye,
+        setCurrentEye,
     };
 
   return (

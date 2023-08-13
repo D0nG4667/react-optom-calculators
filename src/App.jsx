@@ -1,6 +1,7 @@
 import { IconButton, Container, Typography, Grid, Tooltip } from '@mui/material';
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import SpectaclePrescription from './components/SpectaclePrescription';
+import ContactPrescription from './components/ContactPrescription';
 
 
 function App() {
@@ -15,8 +16,7 @@ function App() {
     position: "relative"
   }
   
-
-  return (
+    return (
     <>
 
       <Container maxWidth="md" sx={boxStyles}>
@@ -44,6 +44,16 @@ function App() {
 
         <Grid container spacing={2}>
           <SpectaclePrescription eye="OS" />        
+        </Grid>
+
+        <Grid container spacing={2}>
+          <Grid item>
+          <Typography variant='h5' sx={{ martinBottom: "2rem"}}>CL Rx (OD)</Typography>
+          </Grid>      
+        </Grid>
+
+        <Grid container spacing={2}>       
+            <ContactPrescription />     
         </Grid>
       </Container>      
       

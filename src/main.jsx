@@ -8,11 +8,14 @@ import '@fontsource/roboto/700.css';
 import './index.css'
 
 import SpectacleProvider from './context/SpectacleContext.jsx';
+import ContactProvider from './context/ContactContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <SpectacleProvider>
-      <App /> 
+      <ContactProvider>
+        <App /> 
+      </ContactProvider>        
     </SpectacleProvider>    
   </React.StrictMode>,
 )
