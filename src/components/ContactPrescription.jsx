@@ -89,14 +89,14 @@ const ContactPrescription = () => {
             <>
                 <Grid item xs={12}>
                     <Item>
-                        <Typography variant='h6' sx={{ martinBottom: "2rem"}}>
+                        <Typography variant='h6' sx={{ marginBottom: "0.5rem"}}>
                             {` OD: ${clSphere["OD"]} DS  /  ${clCylinder["OD"]} DC  X  ${clAxis["OD"]}`}
                         </Typography>                    
                     </Item>                
                 </Grid>
                 <Grid item xs={12}>
                     <Item>
-                        <Typography variant='h6' sx={{ martinBottom: "2rem"}}>
+                        <Typography variant='h6' sx={{ marginBottom: "0.5rem"}}>
                             {` OS: ${clSphere["OS"]} DS  /  ${clCylinder["OS"]} DC  X  ${clAxis["OS"]}`}    
                         </Typography>                    
                     </Item>
