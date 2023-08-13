@@ -60,7 +60,8 @@ const ContactPrescription = () => {
         if (cylinder[currentEye])
         {   
             // Substract contacts sphere power from contact lens spc             
-            clc[currentEye] = contactLensPower(spc , bvd[currentEye]) - contactLensPower(sphere[currentEye], bvd[currentEye]);             
+            clc[currentEye] = contactLensPower(spc , bvd[currentEye]) - contactLensPower(sphere[currentEye], bvd[currentEye]);
+            clc[currentEye] = clc[currentEye].toFixed(2);           
             // Adding Plus + sign to positive powers
             if (clc[currentEye] > 0) 
             {
