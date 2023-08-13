@@ -2,6 +2,8 @@ import { IconButton, Container, Typography, Grid, Tooltip } from '@mui/material'
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import SpectaclePrescription from './components/SpectaclePrescription';
 import ContactPrescription from './components/ContactPrescription';
+import ContactProvider from './context/ContactContext.jsx';
+import Footer from './components/Footer'
 
 
 function App() {
@@ -20,15 +22,15 @@ function App() {
     <>
 
       <Container maxWidth="md" sx={boxStyles}>
-        <Typography variant='h4' sx={{ martinBottom: "2rem"}}>Contact Lens Prescription Calculator</Typography>
-        <Tooltip title="Spectacle Rx to Contact Rx calculator">
+        <Typography variant='h4'>Contact Lens Prescription Calculator</Typography>
+        <Tooltip title="Spectacle Rx to Contact Rx calculator" sx={{ marginBottom: "2rem"}}>
           <IconButton>
               <FeedbackIcon />
           </IconButton>
         </Tooltip>
         <Grid container spacing={2}>
         <Grid item>
-          <Typography variant='h5' sx={{ martinBotom: "2rem"}}>OD</Typography>
+          <Typography variant='h5' sx={{ marginBottom: "1rem"}}>OD</Typography>
         </Grid>      
         </Grid>
 
@@ -38,7 +40,7 @@ function App() {
 
         <Grid container spacing={2}>
           <Grid item>
-          <Typography variant='h5' sx={{ martinBottom: "2rem"}}>OS</Typography>
+          <Typography variant='h5' sx={{ marginBottom: "1rem"}}>OS</Typography>
           </Grid>      
         </Grid>
 
@@ -48,13 +50,20 @@ function App() {
 
         <Grid container spacing={2}>
           <Grid item>
-          <Typography variant='h5' sx={{ martinBottom: "2rem"}}>CL Rx (OD)</Typography>
+            <Typography variant='h5' sx={{ marginBottom: "1rem"}}>CL Rx</Typography>
           </Grid>      
         </Grid>
 
-        <Grid container spacing={2}>       
-            <ContactPrescription />     
+        <Grid container spacing={1}> 
+          <ContactProvider>      
+              <ContactPrescription />  
+          </ContactProvider>   
         </Grid>
+
+        <Grid container spacing={2} sx={{ marginTop: "2rem"}}>
+          <Footer />
+        </Grid>
+
       </Container>      
       
     </>
