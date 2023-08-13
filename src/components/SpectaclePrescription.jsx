@@ -1,24 +1,62 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Grid, TextField, Tooltip, IconButton } from '@mui/material';
 import FeedbackIcon from '@mui/icons-material/Feedback';
+import { SpectacleContext } from '../context/SpectacleContext';
 
-import powers from "../powers.json";
 
 
-const SpectaclePrescription = () => {
-    const [sphereRange] = useState(powers.spheres);
-    const [cylinderRange] = useState(powers.cylinders);
-    const [axisRange] = useState(powers.axes);
-    const [vertexRange] = useState(powers.vertices);
+
+const SpectaclePrescription = ({ eye }) => {
+
+    const {
+        sphereRange,
+        cylinderRange,
+        axisRange,
+        vertexRange,
+        sphere,
+        setSphere,
+        cylinder,
+        setCylinder,
+        axis,
+        setAxis,
+        bvd,
+        setBvd,
+    } = useContext(SpectacleContext)
+    
+
+    const handleChange = (e, set, oldValue) => {
+        if (set == "bvd") 
+            {                
+                let targetValue = {};
+                targetValue[eye] = e.target.value;
+                console.log(targetValue);
+                setBvd((oldValue) => ({...oldValue, ...targetValue}));
+            } 
+        else if (set == "sphere")
+            {
+                setBvd({OS:e.target.value});
+            }
+             
+
+
+    }
+
+    console.log(sphere.OD + 'DS ' + cylinder.OD + 'DC ' + axis.OD + ' ' + bvd.OD + 'mm');
+    console.log(sphere.OS + 'DS ' + cylinder.OS + 'DC ' + axis.OS + ' ' + bvd.OS + 'mm');
 
     return (  
         <>
-            <Grid item>
+            <Grid item xs={12} md>
                 <TextField 
                     select
                     label="Sphere (DS)"
-                    fullWidth                
-                    defaultValue=""                                
+                    fullWidth
+                    required                
+                    // defaultValue=""
+                    value={sphere}
+                    onChange={(e) => {
+                        setSphere(e.target.value);                        
+                    }}                                
                     SelectProps={{
                         native: true,                    
                     }}
@@ -31,12 +69,16 @@ const SpectaclePrescription = () => {
                     ))}                   
                 </TextField>                       
             </Grid>
-            <Grid item>
+            <Grid item xs={12} md>
                 <TextField 
                     select
                     label="Cylinder (DC)"
                     fullWidth                
-                    defaultValue=""                                
+                    // defaultValue=""
+                    value={cylinder}
+                    onChange={(e) => {
+                        setCylinder(e.target.value);                        
+                    }}                                
                     SelectProps={{
                         native: true,                    
                     }}
@@ -49,12 +91,16 @@ const SpectaclePrescription = () => {
                     ))}                   
                 </TextField>
             </Grid>
-            <Grid item>
+            <Grid item xs={12} md>
                 <TextField 
                     select
                     label="Axis"
                     fullWidth                
-                    defaultValue=""                                
+                    // defaultValue="" 
+                    value={axis}
+                    onChange={(e) => {
+                        setAxis(e.target.value);                        
+                    }}                                                
                     SelectProps={{
                         native: true,                    
                     }}
@@ -67,12 +113,15 @@ const SpectaclePrescription = () => {
                     ))}                   
                 </TextField>
             </Grid>
-            <Grid item>
+            <Grid item xs={12} md>
                 <TextField 
                     select
                     label="BVD (mm)"
-                    fullWidth                
-                    defaultValue="12"                                
+                    fullWidth
+                    required                
+                    // defaultValue="12"
+                    value={bvd[eye]}
+                    onChange={(e) => handleChange(e, "bvd", bvd)}                                                 
                     SelectProps={{
                         native: true,                    
                     }}

@@ -4,39 +4,48 @@ import SpectaclePrescription from './components/SpectaclePrescription';
 
 
 function App() {
+  const boxStyles = { 
+    background: "#fdfdfd",
+    marginTop: "1rem",
+    textAlign: "center",
+    color: "#222",
+    borderRadius: 2,
+    padding: "4rem 2rem",
+    boxShadow: "0px 10px 15px -3px rgba(0,0,0,0.1)",
+    position: "relative"
+  }
   
 
   return (
     <>
 
-      <Container maxWidth="md" sx={{ background: "#fdfdfd"}}>
-        <Typography variant='h4' sx={{ martinBottom: "3rem"}}>Contact Lens Prescription Calculator</Typography>
+      <Container maxWidth="md" sx={boxStyles}>
+        <Typography variant='h4' sx={{ martinBottom: "2rem"}}>Contact Lens Prescription Calculator</Typography>
         <Tooltip title="Spectacle Rx to Contact Rx calculator">
           <IconButton>
               <FeedbackIcon />
           </IconButton>
         </Tooltip>
-      </Container>
-
-      <Grid container spacing={2}>
+        <Grid container spacing={2}>
         <Grid item>
-          <Typography variant='h5' sx={{ martinBotom: "3rem"}}>OD</Typography>
+          <Typography variant='h5' sx={{ martinBotom: "2rem"}}>OD</Typography>
         </Grid>      
-      </Grid>
+        </Grid>
 
-      <Grid container spacing={2}>
-        <SpectaclePrescription />        
-      </Grid>
+        <Grid container spacing={2}>
+          <SpectaclePrescription eye="OD" />        
+        </Grid>
 
-      <Grid container spacing={2}>
-        <Grid item>
-        <Typography variant='h5' sx={{ martinBottom: "3rem"}}>OS</Typography>
-        </Grid>      
-      </Grid>
+        <Grid container spacing={2}>
+          <Grid item>
+          <Typography variant='h5' sx={{ martinBottom: "2rem"}}>OS</Typography>
+          </Grid>      
+        </Grid>
 
-      <Grid container spacing={2}>
-        <SpectaclePrescription />        
-      </Grid>
+        <Grid container spacing={2}>
+          <SpectaclePrescription eye="OS" />        
+        </Grid>
+      </Container>      
       
     </>
   )
