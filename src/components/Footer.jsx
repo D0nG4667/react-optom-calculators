@@ -14,7 +14,7 @@ const Footer = () => {
     <>
         <Grid item xs={12}>
             <Item>                                                          
-                © Copyright <Link href="https://gabcares.xyz/" underline="none" target="_blank" rel="noreferrer">Gabcares</Link>
+                © Copyright 2023 <Link href="https://gabcares.xyz/" underline="none" target="_blank" rel="noreferrer">Gabcares</Link>
             </Item>
         </Grid>
     </>
