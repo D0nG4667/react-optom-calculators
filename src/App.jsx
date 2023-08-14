@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 
 // Vercel Analytics
 import { inject } from '@vercel/analytics'
+import GoogleAdsense from './components/GoogleAdsense';
 
 
 function App() {
@@ -67,10 +68,15 @@ function App() {
 
         <Grid container spacing={2} sx={{ marginTop: "2rem"}}>
           <Footer />
-        </Grid>
+        </Grid>                  
 
-      </Container>      
-      
+          
+      </Container>
+
+      {/* Google Adsense Container */}
+      <Container>
+        <GoogleAdsense />
+      </Container>              
     </>
   )
 }
