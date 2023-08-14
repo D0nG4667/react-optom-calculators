@@ -4,6 +4,6 @@ import adsense from 'vite-plugin-adsense'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()], [adsense()],  
+  plugins: [react(), adsense()],  
 })
 
