@@ -23,7 +23,9 @@ function App() {
   
     return (
     <>
+      {/* // Vercel Analytics */}
       {inject()}
+      
       <Container maxWidth="md" sx={boxStyles}>
         <Typography variant='h4'>Contact Lens Prescription Calculator</Typography>
         <Tooltip title="Spectacle Rx to Contact Rx calculator" sx={{ marginBottom: "2rem"}}>
