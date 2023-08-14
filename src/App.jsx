@@ -3,7 +3,10 @@ import FeedbackIcon from '@mui/icons-material/Feedback';
 import SpectaclePrescription from './components/SpectaclePrescription';
 import ContactPrescription from './components/ContactPrescription';
 import ContactProvider from './context/ContactContext.jsx';
-import Footer from './components/Footer'
+import Footer from './components/Footer';
+
+// Vercel Analytics
+import { inject } from '@vercel/analytics'
 
 
 function App() {
@@ -20,7 +23,7 @@ function App() {
   
     return (
     <>
-
+      {inject()}
       <Container maxWidth="md" sx={boxStyles}>
         <Typography variant='h4'>Contact Lens Prescription Calculator</Typography>
         <Tooltip title="Spectacle Rx to Contact Rx calculator" sx={{ marginBottom: "2rem"}}>
