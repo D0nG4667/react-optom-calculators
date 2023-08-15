@@ -15,15 +15,16 @@ const SphericalEquivalentSwitch = () => {
     '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
       backgroundColor: pink[600],
     },
-    '& .MuiSwitch-switchBase': {
-      color: green[600],
-      '&:hover': {
-        backgroundColor: alpha(green[600], theme.palette.action.hoverOpacity),
-      },
-    },
-    '& .MuiSwitch-switchBase + .MuiSwitch-track': {
-      backgroundColor: green[600],
-    },
+    // Remove green color switch for not spherical equivalent
+    // '& .MuiSwitch-switchBase': {
+    //   color: green[600],
+    //   '&:hover': {
+    //     backgroundColor: alpha(green[600], theme.palette.action.hoverOpacity),
+    //   },
+    // },
+    // '& .MuiSwitch-switchBase + .MuiSwitch-track': {
+    //   backgroundColor: green[600],
+    // },
   }));
 
   // Get Contact Rx from ContactContext
