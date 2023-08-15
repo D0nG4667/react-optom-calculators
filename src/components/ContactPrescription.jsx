@@ -69,20 +69,25 @@ const ContactPrescription = () => {
 
     useEffect(() => {        
         // Calculate Sphere Power
-        
-        cls[currentEye] = contactLensPower(sphere[currentEye], bvd[currentEye]);
-
-        // Adding Plus + sign to positive powers when necessary
-        cls[currentEye] = addPlusSign(cls[currentEye]);
-
-        // If Both eyes switch is on then OS = OD values
-        if (sameBothEyes) 
+        if (sphere[currentEye])
         {
-            cls["OS"] = cls[currentEye];
-        }
+            cls[currentEye] = contactLensPower(sphere[currentEye], bvd[currentEye]);
+    
+            // Adding Plus + sign to positive powers when necessary
+            cls[currentEye] = addPlusSign(cls[currentEye]);
+    
+            // If Both eyes switch is on then OS = OD values
+            if (sameBothEyes) 
+            {
+                cls["OS"] = cls[currentEye];
+            }
 
-        setClSphere((clSphere) => ({...clSphere, ...cls}));  
-        // console.log(clSphere[currentEye]);                
+            setClSphere((clSphere) => ({...clSphere, ...cls}));  
+            // console.log(clSphere[currentEye]);
+        }
+        
+
+                        
 
         // Calculate Cylinder Power
         if (cylinder[currentEye])

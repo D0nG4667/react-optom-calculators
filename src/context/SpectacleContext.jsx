@@ -10,10 +10,10 @@ const SpectacleProvider = ({ children }) => {
     const [axisRange] = useState(powers.axes);
     const [vertexRange] = useState(powers.vertices);
 
-    const [ sphere, setSphere ] = useState({OD: "", OS:""});
-    const [ cylinder, setCylinder ] = useState({OD: "", OS:""});
-    const [ axis, setAxis ] = useState({OD: "", OS:""});
-    const [ bvd, setBvd ] = useState({OD: "12", OS:"12"});
+    const [ sphere, setSphere ] = useState({OD: "", OS: ""});
+    const [ cylinder, setCylinder ] = useState({OD: "", OS: ""});
+    const [ axis, setAxis ] = useState({OD: "", OS: ""});
+    const [ bvd, setBvd ] = useState({OD: "12", OS: "12"});
     const [ currentEye, setCurrentEye ] = useState("");
     const [ sameBothEyes, setSameBothEyes ] = useState(false);
 

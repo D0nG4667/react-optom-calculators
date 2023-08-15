@@ -53,7 +53,7 @@ useEffect(() => {
 
 
   const handleChange = (event) => {
-    setSameBothEyes(event.target.checked);        
+    setSameBothEyes(event.target.checked);    
   };
 
   // console.log(sameBothEyes);
