@@ -1,8 +1,9 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import { blue } from '@mui/material/colors';
 import { Switch, FormControlLabel, Grid } from '@mui/material/';
 import { SpectacleContext } from '../context/SpectacleContext';
+import { ContactContext } from '../context/ContactContext';
 
 const SameBothEyesSwitch = () => {
   const BlueSwitch = styled(Switch)(({ theme }) => ({
@@ -18,13 +19,43 @@ const SameBothEyesSwitch = () => {
   }));
 
   // Get Both Eyes Boolean variable from SpectacleContext
-  const {   
+  const { 
+    sphere,
+    setSphere,
+    setCylinder,
+    setAxis,  
     sameBothEyes,
     setSameBothEyes,
   } = useContext(SpectacleContext);  
 
+  // Get Contact Rx setters from ContactContext
+  const {
+    clSphere,
+    setClSphere,
+    setClCylinder,
+    setClAxis,
+} = useContext(ContactContext);
+
+let targetValue = {};
+targetValue["OS"] = "";
+
+useEffect(() => {
+  if (!sameBothEyes)
+  {
+    setClCylinder((c) => ({...c, ...targetValue}));
+    setSphere((s) => ({...s, ...targetValue}));
+    setAxis((a) => ({...a, ...targetValue}));
+    setCylinder((c) => ({...c, ...targetValue}));
+    setClSphere((s) => ({...s, ...targetValue}));
+    setClAxis((a) => ({...a, ...targetValue}));
+    // console.log(sameBothEyes);
+    
+  }
+}, [sameBothEyes])
+
+
   const handleChange = (event) => {
-    setSameBothEyes(event.target.checked);
+    setSameBothEyes(event.target.checked);        
   };
 
   // console.log(sameBothEyes);
