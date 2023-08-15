@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useRef } from 'react';
+import { useContext, useEffect } from 'react';
 import { Grid, styled, Paper, Typography } from '@mui/material';
 import { SpectacleContext } from '../context/SpectacleContext';
 import { ContactContext } from '../context/ContactContext';
@@ -29,13 +29,35 @@ const ContactPrescription = () => {
         setClCylinder,
         clAxis,
         setClAxis,
+        sphericalEquivalent,
     } = useContext(ContactContext);
 
     // Calculation Contact Lens Power from Spectacle Rx
 
     const contactLensPower = (D, v) => {
+        D = Number(D);
+        v = Number(v)
         const CLPower = D/(1 - (D * v/1000));  
-        return (Math.round(CLPower * 4) / 4).toFixed(2);
+        return nearestPointTwoFiveDioptre(CLPower);
+    }
+
+    const sphericalEquivalentPower = (DS, DC) => {
+        const SE = Number(DS) + Number(DC)/2;
+        return nearestPointTwoFiveDioptre(SE);
+    }
+
+    const nearestPointTwoFiveDioptre = (D) => {
+        D = (Math.round(D * 4) / 4).toFixed(2);
+        return addPlusSign(D);
+    }
+
+    // Add + to positive powers
+    const addPlusSign = (D) => {
+        if(Number(D) > 0 && D.charAt(0) !=="+") 
+        {
+           return ('+' + D);
+        }
+        return D;
     }
 
     // console.log(contactLensPower(sphere[eye], bvd[eye]));    
@@ -51,7 +73,7 @@ const ContactPrescription = () => {
         // Adding Plus + sign to positive powers
         if (cls[currentEye] > 0) 
         {
-            cls[currentEye] = '+' + cls[currentEye];
+            cls[currentEye] = addPlusSign(cls[currentEye]);
         }
         setClSphere((clSphere) => ({...clSphere, ...cls}));  
         // console.log(clSphere[currentEye]);                
@@ -62,11 +84,8 @@ const ContactPrescription = () => {
             // Substract contacts sphere power from contact lens spc             
             clc[currentEye] = contactLensPower(spc , bvd[currentEye]) - contactLensPower(sphere[currentEye], bvd[currentEye]);
             clc[currentEye] = clc[currentEye].toFixed(2);           
-            // Adding Plus + sign to positive powers
-            if (clc[currentEye] > 0) 
-            {
-                clc[currentEye] = '+' + clc[currentEye];
-            }
+            // Adding Plus + sign to positive powers when necessary           
+            clc[currentEye] = addPlusSign(clc[currentEye]);            
             setClCylinder((clCylinder) => ({...clCylinder, ...clc}));  
             // console.log(clCylinder[currentEye]);
         }        
@@ -87,7 +106,28 @@ const ContactPrescription = () => {
     <>   
     {
         (clSphere["OD"]  || clSphere["OS"]) ? (
-            <>
+            (sphericalEquivalent) ? (
+                // Display Spherical Equivalent
+                <>
+                    <Grid item xs={12}>
+                        <Item>
+                            <Typography variant='h6' sx={{ marginBottom: "0.5rem"}}>
+                                {` OD: ${sphericalEquivalentPower(clSphere["OD"], clCylinder["OD"])} DS `}
+                            </Typography>                    
+                        </Item>                
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Item>
+                            <Typography variant='h6' sx={{ marginBottom: "0.5rem"}}>
+                                {` OS: ${sphericalEquivalentPower(clSphere["OS"], clCylinder["OS"])} DS `}
+                            </Typography>                    
+                        </Item>
+                    </Grid>
+                </>
+
+            ) : (
+                // Display Full Toric Rx 
+                <>
                 <Grid item xs={12}>
                     <Item>
                         <Typography variant='h6' sx={{ marginBottom: "0.5rem"}}>
@@ -103,8 +143,10 @@ const ContactPrescription = () => {
                     </Item>
                 </Grid>
             </>
+            )
         ) : (
-            <>
+            // Display zero values
+            <>            
                 <Grid item xs={12}>
                     <Item>{` 0.00 DS  /  0.00 DC  X  0, Select Spectacle Rx above`}</Item>                
                 </Grid>

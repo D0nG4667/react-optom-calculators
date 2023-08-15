@@ -2,12 +2,12 @@ import { IconButton, Container, Typography, Grid, Tooltip } from '@mui/material'
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import SpectaclePrescription from './components/SpectaclePrescription';
 import ContactPrescription from './components/ContactPrescription';
-import ContactProvider from './context/ContactContext.jsx';
 import Footer from './components/Footer';
 
 // Vercel Analytics
 import { inject } from '@vercel/analytics'
 import GoogleAdsense from './components/GoogleAdsense';
+import SphericalEquivalentSwitch from './components/SphericalEquivalentSwitch';
 
 
 function App() {
@@ -54,16 +54,12 @@ function App() {
           <SpectaclePrescription eye="OS" />        
         </Grid>
 
-        <Grid container spacing={2}>
-          <Grid item>
-            <Typography variant='h5' sx={{ marginBottom: "1rem"}}>CL Rx</Typography>
-          </Grid>      
+        <Grid container spacing={2}>          
+          <SphericalEquivalentSwitch />
         </Grid>
 
-        <Grid container spacing={1}> 
-          <ContactProvider>      
-              <ContactPrescription />  
-          </ContactProvider>   
+        <Grid container spacing={1}>                 
+            <ContactPrescription />            
         </Grid>
 
         <Grid container spacing={2} sx={{ marginTop: "2rem"}}>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Grid, TextField, Tooltip, IconButton } from '@mui/material';
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import { SpectacleContext } from '../context/SpectacleContext';

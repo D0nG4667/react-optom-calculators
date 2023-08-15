@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 const GoogleAdsense = () => {
   // Use effectCalled useRef to make useEffect render only once in dev mode

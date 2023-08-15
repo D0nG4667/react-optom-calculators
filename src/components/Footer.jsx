@@ -1,4 +1,3 @@
-import React from 'react';
 import { Grid, styled, Paper, Link } from '@mui/material';
 
 const Footer = () => {
