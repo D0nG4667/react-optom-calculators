@@ -115,7 +115,7 @@ const ContactPrescription = () => {
       return () => {
         
       }
-    }, [sphere, cylinder, axis, bvd])
+    }, [sphere, cylinder, axis, bvd, sameBothEyes])
 
     // console.log(clSphere["OD"] + 'OD'); 
     // console.log(clCylinder["OD"] + 'OD');
