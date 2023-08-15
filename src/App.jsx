@@ -1,6 +1,8 @@
+import { useContext } from 'react';
 import { IconButton, Container, Typography, Grid, Tooltip } from '@mui/material';
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import SpectaclePrescription from './components/SpectaclePrescription';
+import { SpectacleContext } from './context/SpectacleContext';
 import ContactPrescription from './components/ContactPrescription';
 import Footer from './components/Footer';
 
@@ -8,6 +10,7 @@ import Footer from './components/Footer';
 import { inject } from '@vercel/analytics'
 import GoogleAdsense from './components/GoogleAdsense';
 import SphericalEquivalentSwitch from './components/SphericalEquivalentSwitch';
+import SameBothEyesSwitch from './components/SameBothEyesSwitch';
 
 
 function App() {
@@ -21,6 +24,11 @@ function App() {
     boxShadow: "0px 10px 15px -3px rgba(0,0,0,0.1)",
     position: "relative"
   }
+
+   // Get Both Eyes Boolean variable from SpectacleContext
+   const {   
+    sameBothEyes,
+  } = useContext(SpectacleContext); 
   
     return (
     <>
@@ -33,33 +41,57 @@ function App() {
           <IconButton>
               <FeedbackIcon />
           </IconButton>
-        </Tooltip>
-        <Grid container spacing={2}>
-        <Grid item>
-          <Typography variant='h5' sx={{ marginBottom: "1rem"}}>OD</Typography>
-        </Grid>      
-        </Grid>
+        </Tooltip>        
 
-        <Grid container spacing={2}>
-          <SpectaclePrescription eye="OD" />        
-        </Grid>
+        {
+          (sameBothEyes) ? (
+            // Render only one eye- itenary if sameBothEyes is true
+            <>
+              <Grid container spacing={2}>
+                <Grid item xs={10}>
+                  <Typography textAlign="left" variant='h5' sx={{ marginBottom: "1rem"}}>OU</Typography>          
+                </Grid>
+                <SameBothEyesSwitch />     
+              </Grid>
 
-        <Grid container spacing={2}>
-          <Grid item>
-          <Typography variant='h5' sx={{ marginBottom: "1rem"}}>OS</Typography>
-          </Grid>      
-        </Grid>
+              <Grid container spacing={2}>
+                <SpectaclePrescription eye="OD" />        
+              </Grid>            
+            </>
 
-        <Grid container spacing={2}>
-          <SpectaclePrescription eye="OS" />        
-        </Grid>
+          ) : (
+            <>
+              <Grid container spacing={2}>
+                <Grid item xs={10}>
+                  <Typography textAlign="left" variant='h5' sx={{ marginBottom: "1rem"}}>OD</Typography>          
+                </Grid>
+                <SameBothEyesSwitch />     
+              </Grid>
+
+              <Grid container spacing={2}>
+                <SpectaclePrescription eye="OD" />        
+              </Grid>
+            
+              <Grid container spacing={2}>
+                <Grid item>
+                <Typography textAlign="left" variant='h5' sx={{ marginBottom: "1rem"}}>OS</Typography>
+                </Grid>      
+              </Grid>
+
+              <Grid container spacing={2}>
+                <SpectaclePrescription eye="OS" />        
+              </Grid>
+            </>
+
+          )
+        }
 
         <Grid container spacing={2}>          
           <SphericalEquivalentSwitch />
         </Grid>
 
-        <Grid container spacing={1}>                 
-            <ContactPrescription />            
+        <Grid container spacing={1}>                           
+          <ContactPrescription />            
         </Grid>
 
         <Grid container spacing={2} sx={{ marginTop: "2rem"}}>

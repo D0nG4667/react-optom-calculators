@@ -19,6 +19,7 @@ const ContactPrescription = () => {
         axis,
         bvd,
         currentEye,
+        sameBothEyes,
     } = useContext(SpectacleContext);
 
     // Get Contact Rx from ContactContext
@@ -51,7 +52,7 @@ const ContactPrescription = () => {
         return addPlusSign(D);
     }
 
-    // Add + to positive powers
+    // Add + to positive powers if no plus sign
     const addPlusSign = (D) => {
         if(Number(D) > 0 && D.charAt(0) !=="+") 
         {
@@ -70,11 +71,16 @@ const ContactPrescription = () => {
         // Calculate Sphere Power
         
         cls[currentEye] = contactLensPower(sphere[currentEye], bvd[currentEye]);
-        // Adding Plus + sign to positive powers
-        if (cls[currentEye] > 0) 
+
+        // Adding Plus + sign to positive powers when necessary
+        cls[currentEye] = addPlusSign(cls[currentEye]);
+
+        // If Both eyes switch is on then OS = OD values
+        if (sameBothEyes) 
         {
-            cls[currentEye] = addPlusSign(cls[currentEye]);
+            cls["OS"] = cls[currentEye];
         }
+
         setClSphere((clSphere) => ({...clSphere, ...cls}));  
         // console.log(clSphere[currentEye]);                
 
@@ -83,15 +89,28 @@ const ContactPrescription = () => {
         {   
             // Substract contacts sphere power from contact lens spc             
             clc[currentEye] = contactLensPower(spc , bvd[currentEye]) - contactLensPower(sphere[currentEye], bvd[currentEye]);
-            clc[currentEye] = clc[currentEye].toFixed(2);           
+            clc[currentEye] = clc[currentEye].toFixed(2);
+
             // Adding Plus + sign to positive powers when necessary           
-            clc[currentEye] = addPlusSign(clc[currentEye]);            
+            clc[currentEye] = addPlusSign(clc[currentEye]); 
+            
+            // If Both eyes switch is on then OS = OD values
+            if (sameBothEyes) 
+            {
+                clc["OS"] = clc[currentEye];
+            }
+
             setClCylinder((clCylinder) => ({...clCylinder, ...clc}));  
             // console.log(clCylinder[currentEye]);
         }        
 
         //set axis
-        setClAxis((clAxis) => ({...clAxis, ...axis})); 
+        // If Both eyes switch is on then OS = OD values
+        if (sameBothEyes) 
+        {
+            axis["OS"] = axis["OD"];
+        }
+        setClAxis((clAxis) => ({...clAxis, ...axis}));
 
       return () => {
         

@@ -19,7 +19,6 @@ const SpectaclePrescription = ({ eye }) => {
         setAxis,
         bvd,
         setBvd,
-        currentEye,
         setCurrentEye,       
     } = useContext(SpectacleContext);
     

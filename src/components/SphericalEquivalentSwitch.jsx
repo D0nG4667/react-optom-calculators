@@ -1,7 +1,8 @@
 import { useContext } from 'react';
-import { alpha, styled } from '@mui/material/styles';
-import { green, pink } from '@mui/material/colors';
-import { Switch, FormControlLabel, Grid, Typography } from '@mui/material/';
+import { alpha, styled  } from '@mui/material/styles';
+import { pink } from '@mui/material/colors';
+// import { green } from '@mui/material/colors';
+import { Switch, FormControlLabel, Grid, Typography, useMediaQuery } from '@mui/material/';
 import { ContactContext } from '../context/ContactContext';
 
 const SphericalEquivalentSwitch = () => {
@@ -27,7 +28,7 @@ const SphericalEquivalentSwitch = () => {
     // },
   }));
 
-  // Get Contact Rx from ContactContext
+  // Get Spherical Equivalent Boolean variable from ContactContext
   const {   
     sphericalEquivalent,
     setSphericalEquivalent,
@@ -39,27 +40,35 @@ const SphericalEquivalentSwitch = () => {
 
   // console.log(sphericalEquivalent);
 
+  // Checking if screen is not mobile screen
+  const notMobile = useMediaQuery('(min-width:500px)');
+  // console.log(notMobile);
+
   return (
     <>
-      <Grid item xs>
-        <Typography 
-          variant={(sphericalEquivalent) ? "body1" : "h5"} 
-          sx={{ marginBottom: "1rem"}}
+      <Grid item xs={10}>
+        <Typography
+          textAlign="left" 
+          variant={(notMobile) ? "h5" : "body1"} 
+          sx={{ marginBottom: "1rem" }}
         >
           {(sphericalEquivalent) ? "CL Rx (Spherical Equivalent)" : "CL Rx" }
         </Typography>
       </Grid>
+
+      <Grid item xs={2} display="flex" justifyContent="right">
+        <FormControlLabel 
+          control={
+            <PinkSwitch
+              checked={sphericalEquivalent}
+              onChange={handleChange}
+              inputProps={{ 'aria-label': 'Spherical Equivalent Switch' }}
+            />
+          } 
+          label="SE" 
+        />
+      </Grid>
     
-      <FormControlLabel 
-        control={
-          <PinkSwitch
-            checked={sphericalEquivalent}
-            onChange={handleChange}
-            inputProps={{ 'aria-label': 'Spherical Equivalent Switch' }}
-          />
-        } 
-        label="SE" 
-      />
     </>
   );
 }
