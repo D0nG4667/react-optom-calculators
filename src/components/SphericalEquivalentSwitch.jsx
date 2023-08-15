@@ -41,7 +41,12 @@ const SphericalEquivalentSwitch = () => {
   return (
     <>
       <Grid item xs>
-         <Typography variant='h5' sx={{ marginBottom: "1rem"}}>{(sphericalEquivalent) ? "CL Rx (Spherical Equivalent)" : "CL Rx" }</Typography>
+        <Typography 
+          variant={(sphericalEquivalent) ? "body1" : "h5"} 
+          sx={{ marginBottom: "1rem"}}
+        >
+          {(sphericalEquivalent) ? "CL Rx (Spherical Equivalent)" : "CL Rx" }
+        </Typography>
       </Grid>
     
       <FormControlLabel 
