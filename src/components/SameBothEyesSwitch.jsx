@@ -20,7 +20,6 @@ const SameBothEyesSwitch = () => {
 
   // Get Both Eyes Boolean variable from SpectacleContext
   const { 
-    sphere,
     setSphere,
     setCylinder,
     setAxis,  
@@ -30,7 +29,6 @@ const SameBothEyesSwitch = () => {
 
   // Get Contact Rx setters from ContactContext
   const {
-    clSphere,
     setClSphere,
     setClCylinder,
     setClAxis,
