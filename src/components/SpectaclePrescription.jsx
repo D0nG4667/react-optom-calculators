@@ -71,6 +71,9 @@ const SpectaclePrescription = ({ eye }) => {
                     required                
                     // defaultValue=""
                     value={sphere[eye]}
+                    InputLabelProps={{ 
+                        shrink: (sphere[eye]) ? true : false,
+                    }}
                     onChange={(e) => handleChange(e, "sphere", sphere)}                                
                     SelectProps={{
                         native: true,                    
@@ -91,6 +94,9 @@ const SpectaclePrescription = ({ eye }) => {
                     fullWidth                
                     // defaultValue=""
                     value={cylinder[eye]}
+                    InputLabelProps={{ 
+                        shrink: (cylinder[eye]) ? true : false,
+                    }}
                     onChange={(e) => handleChange(e, "cylinder", cylinder)}                                
                     SelectProps={{
                         native: true,                    
@@ -111,6 +117,9 @@ const SpectaclePrescription = ({ eye }) => {
                     fullWidth                
                     // defaultValue="" 
                     value={axis[eye]}
+                    InputLabelProps={{ 
+                        shrink: (axis[eye]) ? true : false,
+                    }}
                     onChange={(e) => handleChange(e, "axis", axis)}                                                
                     SelectProps={{
                         native: true,                    
@@ -132,6 +141,9 @@ const SpectaclePrescription = ({ eye }) => {
                     required                
                     // defaultValue="12"
                     value={bvd[eye]}
+                    InputLabelProps={{ 
+                        shrink: (bvd[eye]) ? true : false,
+                    }}
                     onChange={(e) => handleChange(e, "bvd", bvd)}                                                 
                     SelectProps={{
                         native: true,                    
