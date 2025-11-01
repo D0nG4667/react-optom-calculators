@@ -9,6 +9,12 @@ A React + TypeScript application for managing and calculating **contact lens pre
 
 ---
 
+## 🌐 Live Demo
+
+👉 [Contact Lens Calculator](https://cl.gabcares.com)
+
+---
+
 ## ✨ Features
 
 - **Responsive UI** with Material UI Grid and Typography  
