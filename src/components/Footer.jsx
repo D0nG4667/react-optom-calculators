@@ -1,4 +1,4 @@
-import { Grid, styled, Paper, Link } from '@mui/material';
+import { Grid, styled, Paper, Link, Typography } from '@mui/material';
 
 const Footer = () => {
     const Item = styled(Paper)(({ theme }) => ({
@@ -9,11 +9,18 @@ const Footer = () => {
         color: theme.palette.text.secondary,
       }));
 
+    const creationYear = 2023; // Year website was created
+    const currentYear = new Date().getFullYear(); // Current year
+
   return (
     <>
         <Grid item xs={12}>
             <Item>                                                          
-                © Copyright 2023 <Link href="https://gabcares.xyz/" underline="none" target="_blank" rel="noreferrer">Gabcares</Link>
+                Made with 💖by <Link href="https://www.linkedin.com/in/dr-gabriel-okundaye" underline="none" target="_blank" rel="noreferrer">Gabriel Okundaye</Link>
+                <Typography variant="body2" color="textSecondary" align="center">
+                    © {creationYear}
+                    {currentYear !== creationYear ? ` - ${currentYear}` : ""}.
+                </Typography>
             </Item>
         </Grid>
     </>
