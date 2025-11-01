@@ -36,7 +36,7 @@ function App() {
       {inject()}
       
       <Container maxWidth="md" sx={boxStyles}>
-        <Typography variant='h4'>Contact Lens Prescription Calculator</Typography>
+        <Typography variant='h4'>Contact Lens Calculator</Typography>
         <Tooltip title="Spectacle Rx to Contact Rx calculator" sx={{ marginBottom: "2rem"}}>
           <IconButton>
               <FeedbackIcon />
